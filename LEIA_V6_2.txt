@@ -1,0 +1,1 @@
+V6.2 — Novo fundo dourado no certificado (prévia e PNG). Ajustes de legibilidade no celular e revisão do semáforo. Se o servidor não enviar a revisão, aparece um aviso em vez de sumir silenciosamente. Mantidas funções e dados anteriores.

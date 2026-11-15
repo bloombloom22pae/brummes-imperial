@@ -1,0 +1,1 @@
+V6.1: 60 novas palavras no dicionário oficial. Base V6.0 mantida. Publique este ZIP no Netlify Deploys. Nenhum SQL adicional é necessário.

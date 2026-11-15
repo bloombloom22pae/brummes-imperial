@@ -1,0 +1,8 @@
+BRUMMÊS V5.8 — 2 PASSOS IMPORTANTES
+
+1) No Supabase > SQL Editor, cole TODO o conteúdo de ATIVAR_RANKING_V5_8.sql e clique Run. Não coloque chaves no chat.
+2) No Netlify > Deploys, arraste este ZIP para publicar. Espere Published e atualize o site com Ctrl+F5.
+
+IMPORTANTE: O XP de quizzes antigos não pode ser recuperado automaticamente, pois nunca foi salvo. Faça um novo Quiz Imperial COMPLETO depois da atualização.
+
+O backend valida as respostas e só soma XP uma vez por partida. Não altere as variáveis de ambiente que já funcionam.

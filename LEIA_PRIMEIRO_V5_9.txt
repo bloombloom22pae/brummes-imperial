@@ -1,0 +1,8 @@
+Brummês Imperial V5.9 — Organização do Dicionariummm
+
+1. Dicionário com botão Exibir palavras, fechado inicialmente. Busca, filtros e Surpreenda-me abrem a lista automaticamente.
+2. Ideias e Discord movidos para o final do Dicionariummm.
+3. Adivinhe a Palavra movido para dentro da seção Quiz Imperial, preservando a funcionalidade.
+4. Ranking, login, SQL, funções Netlify e demais recursos da V5.8 preservados.
+
+Instalação: envie este ZIP em Netlify → Deploys. Se ainda não ativou o SQL da V5.8, execute ATIVAR_RANKING_V5_8.sql no Supabase antes de testar o ranking.

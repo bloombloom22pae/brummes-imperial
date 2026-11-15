@@ -1,0 +1,8 @@
+V6.3 — QUIZ IMPERIAL ALEATÓRIO
+
+Quiz agora sorteia perguntas entre as 216 entradas do dicionário (sem significados repetidos), com alternativas embaralhadas e 10 perguntas por rodada (3 fáceis, 4 médias, 3 difíceis).
+O jogo Adivinhe a Palavra e a Palavra do Dia também usam o mesmo vocabulário expandido.
+Mantidos: certificado V6.2, layout mobile, login, ranking, XP, validação segura do quiz no servidor, demais recursos.
+
+IMPORTANTE: o XP continua acumulando ao repetir quizzes, como na versão enviada. Não alteramos regras de XP nem banco de dados.
+Este ZIP foi criado a partir da versão V6.2 enviada, não de eventuais alterações da versão online.

@@ -1,0 +1,9 @@
+BRUMMÊS IMPERIAL V6.0
+
+Corrigido ranking: a consulta agora usa POST com a ação ranking.
+Adicionada revisão verde/vermelha depois da validação final do quiz.
+Preservados login, dados, menu, dicionário e demais seções.
+
+PUBLICAR: arraste este ZIP para Netlify > Deploys.
+Não é necessário executar SQL novo: usa as tabelas e função RPC já instaladas na V5.8.
+Não compartilhe chaves secretas.

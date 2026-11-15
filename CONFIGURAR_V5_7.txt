@@ -1,0 +1,24 @@
+BRUMMÊS IMPERIAL V5.7 — ATIVAÇÃO OBRIGATÓRIA
+
+1. Crie um projeto gratuito no Supabase (com ajuda de um responsável, se necessário).
+2. No SQL Editor, execute ranking.sql.
+3. No Netlify, abra Site configuration > Environment variables e defina:
+   SUPABASE_URL = URL do seu projeto
+   SUPABASE_SECRET_KEY = chave sb_secret_... do Supabase (somente Functions, Production)
+   SESSION_SECRET = texto aleatório longo (pelo menos 32 caracteres)
+4. Publique a PASTA INTEIRA com a subpasta netlify/functions, e não só o index.html.
+   IMPORTANTE: o deploy manual por arrastar pasta no Netlify pode não empacotar funções.
+   Para funções Netlify, use deploy por repositório Git ou Netlify CLI.
+5. Faça novo deploy e teste registro/login com dois navegadores.
+
+SEGURANÇA:
+- Nunca coloque SUPABASE_SERVICE_ROLE_KEY no index.html, em Git público ou em prints.
+- Senhas são processadas no servidor com scrypt e salt; cookies HttpOnly/Secure.
+- Sem e-mail, NÃO há recuperação automática de senha nesta versão.
+- A pontuação global está BLOQUEADA até implementar validação real das respostas do quiz NO SERVIDOR.
+  Isso evita que alguém simplesmente envie XP falso. O quiz continua funcionando e exibindo o resultado,
+  mas não aumenta XP global ainda. Não publique prometendo ranking XP ativo.
+- A tela de login impede uso normal da interface, mas não protege arquivos públicos do site.
+- NÃO substitua seu site publicado antes de configurar e testar o backend.
+
+ATUALIZACAO: Este pacote aceita SUPABASE_SECRET_KEY. O login so funciona quando a funcao Netlify estiver implantada. Se o deploy for apenas via Netlify Drop, configure um repositorio Git para build/deploy de functions. O XP global permanece desativado.

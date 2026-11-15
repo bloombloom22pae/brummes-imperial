@@ -1,0 +1,19 @@
+BRUMMÊS IMPERIAL V6.3 — TESTE DE MIGRAÇÃO PARA CLOUDFLARE PAGES
+
+Arquivos originais preservados; index.html passa a chamar /api/imperial.
+A função Cloudflare está em functions/api/imperial.js.
+O backend original foi copiado para functions/_lib/imperial.mjs.
+
+IMPORTANTE: ESTA MIGRAÇÃO NÃO FOI TESTADA EM PRODUÇÃO. O backend original usa node:crypto com scryptSync, que pode exigir ajustes de compatibilidade na Cloudflare. Teste cadastro/login antes de divulgar.
+
+1. Suba TODOS os arquivos deste ZIP (extraídos, sem pasta externa) no repositório GitHub já conectado à Cloudflare Pages.
+2. No painel Cloudflare Pages > seu projeto > Settings > Variables and Secrets, configure os segredos do MESMO projeto Supabase usado no Netlify:
+   SUPABASE_URL
+   SUPABASE_SECRET_KEY (ou SUPABASE_SERVICE_ROLE_KEY)
+   SESSION_SECRET (mesmo segredo anterior; pelo menos 32 caracteres)
+   Nunca coloque segredos no GitHub nem envie em prints.
+3. Em Settings > Runtime/Compatibility, confira que nodejs_compat está ativo e que a data de compatibilidade é 2026-11-01 ou posterior. O wrangler.toml já solicita isso.
+4. Faça um novo deploy, abra /api/imperial e teste login com uma conta existente; depois teste conta de teste, quiz e ranking.
+5. Não desligue o Netlify antes de validar tudo. Não altere o banco de dados.
+
+Observação: se Cloudflare não oferecer suporte à API scryptSync de node:crypto, o login precisará de uma implementação de scrypt compatível com o formato de hash já existente. Não troque a função de hash por PBKDF2, pois isso invalidaria senhas antigas.
