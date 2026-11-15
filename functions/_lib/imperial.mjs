@@ -1,5 +1,6 @@
 import crypto from 'node:crypto';
-const URL=process.env.SUPABASE_URL, KEY=process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY, SECRET=process.env.SESSION_SECRET;
+export function createHandler(env) {
+const URL=env.SUPABASE_URL, KEY=env.SUPABASE_SECRET_KEY || env.SUPABASE_SERVICE_ROLE_KEY, SECRET=env.SESSION_SECRET;
 const reply=(status,obj,headers={})=>({statusCode:status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store',...headers},body:JSON.stringify(obj)});
 const fail=(code,message)=>reply(code,{error:message});
 const cookie=(token,maxAge)=>`imperial_session=${token}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=${maxAge}`;
@@ -11,7 +12,7 @@ const shuffle=a=>{const b=[...a];for(let i=b.length-1;i>0;i--){const j=crypto.ra
 const hash=(pass,salt)=>crypto.scryptSync(pass,salt,64).toString('hex');
 const getUser=async username=>(await db('imperial_users?username=eq.'+encodeURIComponent(username)+'&select=id,username,password_hash,salt,xp&limit=1'))[0];
 const publicUser=u=>({username:u.username,xp:u.xp});
-export async function handler(event){if(!URL||!KEY||!SECRET||SECRET.length<32)return fail(503,'Contas ainda não configuradas pelo administrador.');if(!['GET','POST'].includes(event.httpMethod))return fail(405,'Método inválido');let input={};try{if(event.body)input=JSON.parse(event.body)}catch{return fail(400,'Dados inválidos')}const action=event.httpMethod==='GET'?'me':input.action;
+async function handler(event){if(!URL||!KEY||!SECRET||SECRET.length<32)return fail(503,'Contas ainda não configuradas pelo administrador.');if(!['GET','POST'].includes(event.httpMethod))return fail(405,'Método inválido');let input={};try{if(event.body)input=JSON.parse(event.body)}catch{return fail(400,'Dados inválidos')}const action=event.httpMethod==='GET'?'me':input.action;
 try{
 if(action==='register'||action==='login'){
  const username=String(input.username||'').trim(),password=String(input.password||'');
@@ -56,3 +57,6 @@ if(action==='quiz_finish'){
 if(action==='score')return fail(403,'Pontuação direta não permitida.');
 return fail(400,'Ação desconhecida');
 }catch(e){const msg=String(e?.message||'UNKNOWN');const safe=msg.startsWith('DB_HTTP_')?msg:(e?.code==='ENOTFOUND'?'NETWORK_DNS':e instanceof TypeError?'NETWORK_FETCH':'SERVER_EXCEPTION');console.error('Imperial backend failure:',safe);return fail(500,'Falha interna ('+safe+'). Informe esse código ao administrador.')}}
+
+return handler;
+}
