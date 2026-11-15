@@ -1,8 +1,8 @@
 // Adaptador Cloudflare Pages para o backend original do Brummês Imperial.
 // Exige compatibilidade Node.js e variáveis de ambiente no painel da Cloudflare.
-import { handler } from '../_lib/imperial.mjs';
+import { createHandler } from '../_lib/imperial.mjs';
 
-export async function onRequest({ request }) {
+export async function onRequest({ request, env }) {
   const url = new URL(request.url);
   const event = {
     httpMethod: request.method,
@@ -11,7 +11,7 @@ export async function onRequest({ request }) {
     path: url.pathname,
   };
   try {
-    const result = await handler(event);
+    const result = await createHandler(env)(event);
     return new Response(result.body, {
       status: result.statusCode,
       headers: result.headers || {},
