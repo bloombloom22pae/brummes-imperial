@@ -1,0 +1,8 @@
+BRUMMÊS IMPERIAL V7 · DASHBOARD E TOOLS
+
+Abra index.html. A página original foi preservada, com dashboard, menu lateral e links para tools.html.
+Todas as páginas e arquivos de backend do pacote V6.3 continuam incluídos.
+QR Code usa api.qrserver.com (não envie dados privados). União de PDF usa pdf-lib via CDN (precisa internet).
+O botão Imagens para PDF abre a impressão do navegador; selecione Salvar como PDF.
+As demais ferramentas funcionam localmente no navegador.
+Não há alteração no banco, ranking, login ou certificados.
